@@ -1,0 +1,222 @@
+// Variables for colors, spacing, and fonts
+$primary-color: #FF0000; // Red color for borders, buttons, etc.
+$secondary-color: #333; // Dark grey for text
+$light-grey: #f9f9f9; // Light grey for backgrounds
+$hover-grey: #e6e6e6; // Hover color for sidebar items
+$button-padding: 8px 20px; // Standard button padding
+$border-radius: 10px; // Common border radius for rounded elements
+$font-family: Arial, sans-serif; // Primary font
+
+// General body styling
+body {
+    font-family: $font-family;
+    min-height: 100vh;
+    overflow-x: hidden; // Prevents horizontal scrolling
+}
+
+// Mixin for button styling to maintain consistency
+@mixin button-style {
+    padding: $button-padding;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+// Header styling for layout and alignment
+.header {
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    display: grid; // Used CSS grid to split into three sections
+    grid-template-columns: repeat(3, 1fr); // Create 3 equal-width columns
+
+    // Logo section within the header
+    .logo {
+        display: inline-block;
+        align-items: center;
+
+        img {
+            width: 100px;
+            height: auto;
+            margin-left: 10px; // Space between logo image and text
+        }
+    }
+
+    // Search bar styling
+    .search-bar {
+        display: inline-block;
+        justify-content: center;
+        flex-grow: 1; // Allows search bar to grow
+        margin: 0 20px;
+
+        input {
+            width: 300px;
+            padding: $button-padding;
+            border-radius: $border-radius; // Rounded edges
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            @include button-style;
+            background-color: #ccc;
+            border: none;
+            margin-left: 20px; // Spacing between input and button
+        }
+    }
+
+    // User options styling
+    .user-options {
+        display: flex;
+        align-items: center;
+        gap: 15px; // Space between elements
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        // Notification bell styling with hover effect
+        .notifications i {
+            font-size: 20px;
+            color: black;
+            margin-top: 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: #FFD700;
+            }
+        }
+
+        // Profile icon styling
+        .profile {
+            width: 40px;
+            height: 40px;
+            border: 2px solid $primary-color;
+            background-color: #ffffff;
+            border-radius: 50%; // Makes it round
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: black;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// Filter buttons styling 
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 70px 20px 20px 200px; // Align with main content and add top margin to avoid overlap
+    flex-wrap: wrap;
+
+    button {
+        background-color: $light-grey;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        color: $secondary-color;
+        @include button-style;
+
+        &:hover {
+            background-color: $hover-grey;
+        }
+    }
+}
+
+// Sidebar styling fixed to the left of the screen
+.sidebar {
+    width: 200px;
+    background-color: $light-grey;
+    padding-top: 60px; // Avoid overlap with header
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 15px 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $hover-grey; // Hover effect for items
+            }
+        }
+    }
+}
+
+// Main content styling
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 2px; /* Space between grid items */
+    padding: 0; /* No padding */
+    margin: 0 auto; /* Center the grid */
+    width: 70%; /* Reduce the overall grid width to 70% */
+    box-sizing: border-box;
+}
+
+body .main-content .video-thumbnail {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+body .main-content .video-thumbnail:hover {
+    background-color: #f1f1f1;
+}
+
+// Video content styling
+.video-thumbnail {
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box; /* Includes padding in total size */
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the top */
+    height: auto; /* Let height adjust based on content */
+    width: 100%; /* Ensure thumbnails fill their container */
+    text-align: left; /* Align text to the left */
+    overflow: hidden; /* Prevent overflow of content */
+}
+
+.video-thumbnail img {
+    width: 90%; /* Make the image fill the container's width */
+    height: 150px; /* Set a fixed height for image size */
+    object-fit: cover; /* Ensure the image fills the space without distorting */
+}
+
+.video-thumbnail p {
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%; /* Make sure text fits within the container */
+}
+
+.video-thumbnail .video-info {
+    flex-grow: 1; /* Allow video info to take up remaining space */
+    display: flex;
+    flex-direction: column;
+}
